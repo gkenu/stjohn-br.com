@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. John — Assessoria Estratégica em Real Estate</title>
+  <meta name="description" content="Assessoria estratégica independente em real estate. R$7B+ em VGV entregues. 30+ anos de experiência em desenvolvimento imobiliário, fundos e gestão de ativos.">
+
+  <!-- Fonts: Cormorant Garamond for gravitas + DM Sans for modern clarity -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================
+       CSS VARIABLES — PALETTE & TOKENS
+       ======================================== */
+    :root {
+      --navy-900: #0B1929;
+      --navy-800: #0F2440;
+      --navy-700: #163157;
+      --navy-600: #1D3E6E;
+      --navy-500: #2A5494;
+      --gold-400: #C4A265;
+      --gold-300: #D4B87A;
+      --gold-200: #E6D4A8;
+      --cream-100: #FAF8F4;
+      --cream-50: #FDFCFA;
+      --white: #FFFFFF;
+      --gray-200: #E8E6E1;
+      --gray-400: #A09D96;
+      --gray-600: #6B6862;
+      --gray-800: #3A3834;
+
+      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-800);
+      background: var(--cream-50);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+
+    /* ========================================
+       SCROLL REVEAL ANIMATIONS
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(11, 25, 41, 0.97);
+      padding: 0.8rem 3rem;
+      box-shadow: 0 2px 40px rgba(0,0,0,0.15);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    .nav__logo span {
+      color: var(--gold-400);
+      font-weight: 300;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold-400);
+      transition: width 0.3s var(--ease-out-expo);
+    }
+
+    .nav__links a:hover { color: var(--white); }
+    .nav__links a:hover::after { width: 100%; }
+
+    .nav__lang {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold-400);
+      border: 1px solid rgba(196,162,101,0.4);
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .nav__lang:hover {
+      background: var(--gold-400);
+      color: var(--navy-900);
+    }
+
+    /* Mobile menu */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s ease;
+      border-radius: 1px;
+    }
+
+    .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+    .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+    /* ========================================
+       HERO SECTION
+       ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--navy-900);
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Subtle geometric pattern overlay */
+    .hero__bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 75% 40%, rgba(22,49,87,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(15,36,64,0.5) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    /* Diagonal gold accent line */
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 15%;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 10%, rgba(196,162,101,0.15) 40%, rgba(196,162,101,0.08) 70%, transparent 90%);
+      z-index: 2;
+      transform: rotate(3deg);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero__text { max-width: 560px; }
+
+    .hero__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s var(--ease-out-expo) 0.3s forwards;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s var(--ease-out-expo) 0.5s forwards;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-300);
+    }
+
+    .hero__subtitle {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s var(--ease-out-expo) 0.7s forwards;
+    }
+
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(196,162,101,0.3);
+      transition: all 0.4s var(--ease-out-expo);
+      opacity: 0;
+      animation: fadeSlideUp 0.8s var(--ease-out-expo) 0.9s forwards;
+    }
+
+    .hero__cta:hover {
+      border-bottom-color: var(--gold-400);
+      gap: 1.1rem;
+    }
+
+    .hero__cta svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .hero__cta:hover svg { transform: translateX(4px); }
+
+    /* Hero stats */
+    .hero__stats {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding-left: 3rem;
+      border-left: 1px solid rgba(196,162,101,0.15);
+    }
+
+    .hero__stat {
+      opacity: 0;
+      animation: fadeSlideUp 0.7s var(--ease-out-expo) forwards;
+    }
+
+    .hero__stat:nth-child(1) { animation-delay: 0.6s; }
+    .hero__stat:nth-child(2) { animation-delay: 0.8s; }
+    .hero__stat:nth-child(3) { animation-delay: 1.0s; }
+    .hero__stat:nth-child(4) { animation-delay: 1.2s; }
+
+    .hero__stat-number {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero__stat-number span { color: var(--gold-400); }
+
+    .hero__stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========================================
+       SECTION SHARED STYLES
+       ======================================== */
+    .section { padding: 7rem 3rem; }
+
+    .section--navy {
+      background: var(--navy-900);
+      color: var(--white);
+    }
+
+    .section--cream { background: var(--cream-100); }
+
+    .section__container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section__eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 1rem;
+    }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .section__title em {
+      font-style: italic;
+      color: var(--gold-400);
+    }
+
+    .section--navy .section__title em { color: var(--gold-300); }
+
+    .section__intro {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--gray-600);
+      max-width: 640px;
+      font-weight: 300;
+    }
+
+    .section--navy .section__intro { color: rgba(255,255,255,0.55); }
+
+    /* Divider */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-400);
+      margin: 2rem 0;
+    }
+
+    /* ========================================
+       ABOUT SECTION
+       ======================================== */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 5rem;
+      margin-top: 3.5rem;
+      align-items: start;
+    }
+
+    .about__portrait {
+      position: relative;
+    }
+
+    .about__portrait-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    /* Subtle gold border accent */
+    .about__portrait::after {
+      content: '';
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      right: -1rem;
+      bottom: -1rem;
+      border: 1px solid var(--gold-200);
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    .about__body h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--navy-800);
+    }
+
+    .about__body h3:first-child { margin-top: 0; }
+
+    .about__body p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+
+    .about__credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .about__credential {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--navy-700);
+    }
+
+    .about__credential svg {
+      width: 16px;
+      height: 16px;
+      color: var(--gold-400);
+      flex-shrink: 0;
+    }
+
+    /* ========================================
+       SERVICES SECTION
+       ======================================== */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 3.5rem;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .service-card {
+      padding: 3rem;
+      background: var(--navy-900);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.5s var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold-400);
+      transition: height 0.5s var(--ease-out-expo);
+    }
+
+    .service-card:hover {
+      background: var(--navy-800);
+    }
+
+    .service-card:hover::before { height: 100%; }
+
+    .service-card__number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(196,162,101,0.15);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .service-card__title-en {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card__text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+    }
+
+    .service-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .service-card__tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    /* ========================================
+       CASE STUDIES SECTION
+       ======================================== */
+    .cases__list {
+      margin-top: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .case:nth-child(even) { direction: rtl; }
+    .case:nth-child(even) > * { direction: ltr; }
+
+    .case__images {
+      position: relative;
+    }
+
+    .case__img-main {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+
+    .case__img-secondary {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 45%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      border: 3px solid var(--cream-50);
+    }
+
+    .case:nth-child(even) .case__img-secondary {
+      right: auto;
+      left: -2rem;
+    }
+
+    .case__body {}
+
+    .case__eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 0.75rem;
+    }
+
+    .case__title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--navy-800);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .case__location {
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      margin-bottom: 1.5rem;
+    }
+
+    .case__text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    .case__metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .case__metric-value {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--navy-800);
+      line-height: 1.2;
+    }
+
+    .case__metric-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    /* ========================================
+       CONTACT SECTION
+       ======================================== */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3.5rem;
+    }
+
+    .contact__info p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2rem;
+    }
+
+    .contact__detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact__detail svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold-400);
+      flex-shrink: 0;
+    }
+
+    .contact__detail span {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .contact__detail a {
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s ease;
+    }
+
+    .contact__detail a:hover { color: var(--gold-300); }
+
+    .contact__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form__group { position: relative; }
+
+    .form__input,
+    .form__textarea {
+      width: 100%;
+      padding: 1rem 0;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--white);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form__input::placeholder,
+    .form__textarea::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .form__input:focus,
+    .form__textarea:focus {
+      border-bottom-color: var(--gold-400);
+    }
+
+    .form__textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form__submit {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy-900);
+      background: var(--gold-400);
+      padding: 1rem 2.5rem;
+      margin-top: 1rem;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .form__submit:hover {
+      background: var(--gold-300);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(196,162,101,0.3);
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background: var(--navy-900);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem 3rem;
+    }
+
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer__copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .footer__back-top {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      transition: opacity 0.3s ease;
+    }
+
+    .footer__back-top:hover { opacity: 0.7; }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .hero__content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 7rem 2rem 4rem;
+      }
+      .hero__stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(196,162,101,0.15);
+        padding-top: 2rem;
+        gap: 2rem;
+      }
+      .hero__stat { flex: 1; min-width: 140px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .about__portrait { max-width: 360px; }
+
+      .services__grid { grid-template-columns: 1fr; }
+
+      .case {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .case:nth-child(even) { direction: ltr; }
+      .case__img-secondary { display: none; }
+
+      .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 1rem 1.5rem; }
+      .nav.scrolled { padding: 0.7rem 1.5rem; }
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+
+      .nav__links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: rgba(11,25,41,0.98);
+        backdrop-filter: blur(20px);
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 999;
+      }
+
+      .nav__links.open a {
+        font-size: 1.2rem;
+        color: var(--white);
+      }
+
+      .section { padding: 4rem 1.5rem; }
+      .hero__title { font-size: 2.2rem; }
+      .hero__stat-number { font-size: 2.4rem; }
+
+      .case__title { font-size: 1.7rem; }
+      .case__metrics { grid-template-columns: repeat(2, 1fr); }
+
+      .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    /* ========================================
+       NOISE TEXTURE OVERLAY (subtle grain)
+       ======================================== */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ========================================
+       LANGUAGE TOGGLE
+       ======================================== */
+    [data-lang="en"] { display: none; }
+    html[lang="en"] [data-lang="en"] { display: initial; }
+    html[lang="en"] [data-lang="pt"] { display: none; }
+
+    /* For block elements */
+    [data-lang-block="en"] { display: none; }
+    html[lang="en"] [data-lang-block="en"] { display: block; }
+    html[lang="en"] [data-lang-block="pt"] { display: none; }
+
+    [data-lang-flex="en"] { display: none; }
+    html[lang="en"] [data-lang-flex="en"] { display: flex; }
+    html[lang="en"] [data-lang-flex="pt"] { display: none; }
+
+    [data-lang-grid="en"] { display: none; }
+    html[lang="en"] [data-lang-grid="en"] { display: grid; }
+    html[lang="en"] [data-lang-grid="pt"] { display: none; }
+
+    /* ========================================
+       PRINT / PDF EXPORT STYLES
+       Forces dark backgrounds & preserves layout
+       Chrome: Print > More settings > Background graphics ON
+       ======================================== */
+    @media print {
+      /* Force backgrounds to render */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+
+      html { font-size: 11px; }
+      body { background: var(--cream-50) !important; }
+
+      /* Kill noise overlay, animations, fixed positioning */
+      .noise { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .hero__eyebrow, .hero__title, .hero__subtitle, .hero__cta, .hero__stat {
+        opacity: 1 !important; transform: none !important; animation: none !important;
+      }
+
+      /* Nav: static logo strip, hide interactive elements */
+      .nav {
+        position: static !important;
+        background: var(--navy-900) !important;
+        padding: 0.75rem 2rem !important;
+        box-shadow: none !important;
+      }
+      .nav__links { display: none !important; }
+      .nav__hamburger { display: none !important; }
+
+      /* Sections: tighter padding for paper */
+      .section { padding: 2.5rem 2rem !important; }
+
+      /* Hero: force navy background, compact layout */
+      .hero {
+        min-height: auto !important;
+        background: var(--navy-900) !important;
+        padding: 3rem 0 2rem !important;
+      }
+      .hero__bg { display: none !important; }
+      .hero__content {
+        padding: 2rem !important;
+        grid-template-columns: 1.2fr 1fr !important;
+        gap: 2.5rem !important;
+      }
+      .hero__title { font-size: 2.4rem !important; }
+      .hero__subtitle { margin-bottom: 1rem !important; }
+      .hero__cta { display: none !important; }
+      .hero__stats {
+        border-left: 1px solid rgba(196,162,101,0.2) !important;
+        padding-left: 2rem !important;
+        gap: 1.5rem !important;
+      }
+      .hero__stat-number { font-size: 2.4rem !important; }
+
+      /* Navy sections: force background */
+      .section--navy {
+        background: var(--navy-900) !important;
+        color: var(--white) !important;
+      }
+
+      /* About: smaller portrait, tighter grid */
+      .about__grid {
+        grid-template-columns: 260px 1fr !important;
+        gap: 2.5rem !important;
+        margin-top: 2rem !important;
+      }
+      .about__portrait::after { display: none !important; }
+      .about__body h3 { margin-top: 1.5rem !important; font-size: 1.2rem !important; }
+      .about__body p { font-size: 0.85rem !important; line-height: 1.6 !important; margin-bottom: 0.5rem !important; }
+
+      /* Services: 2x2 grid preserved */
+      .services__grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        margin-top: 2rem !important;
+      }
+      .service-card {
+        padding: 1.5rem !important;
+        background: var(--navy-900) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+      }
+      .service-card::before { display: none !important; }
+      .service-card__number { font-size: 2rem !important; margin-bottom: 0.75rem !important; }
+      .service-card__title { font-size: 1.15rem !important; }
+      .service-card__text { font-size: 0.8rem !important; line-height: 1.6 !important; }
+
+      /* Case studies: side-by-side preserved, no overlap */
+      .cases__list { gap: 2.5rem !important; margin-top: 2rem !important; }
+      .case {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+      }
+      .case__img-secondary { display: none !important; }
+      .case__img-main { aspect-ratio: 16/9 !important; }
+      .case__title { font-size: 1.6rem !important; }
+      .case__text { font-size: 0.85rem !important; line-height: 1.6 !important; margin-bottom: 1rem !important; }
+      .case__metrics { gap: 1rem !important; }
+      .case__metric-value { font-size: 1.2rem !important; }
+
+      /* Contact: hide form, show info only */
+      .contact__grid { grid-template-columns: 1fr !important; }
+      .contact__form { display: none !important; }
+      .contact__info p { font-size: 0.9rem !important; }
+
+      /* Footer */
+      .footer { padding: 1rem 2rem !important; }
+
+      /* Contact section: compact */
+      #contato { padding-top: 2rem !important; padding-bottom: 1.5rem !important; }
+
+      /* Page breaks: let content flow naturally, only avoid breaking inside cases */
+      .hero, #sobre, #servicos, #projetos, #contato { page-break-before: auto; }
+      .case { page-break-inside: avoid; }
+      .service-card { page-break-inside: avoid; }
+      .services__grid { page-break-inside: avoid; }
+
+      /* Footer: no trailing blank page */
+      .footer { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Noise texture overlay -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav__logo">St<span>.</span> John</a>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#sobre"><span data-lang="pt">Sobre</span><span data-lang="en">About</span></a></li>
+      <li><a href="#servicos"><span data-lang="pt">Serviços</span><span data-lang="en">Services</span></a></li>
+      <li><a href="#projetos"><span data-lang="pt">Projetos</span><span data-lang="en">Projects</span></a></li>
+      <li><a href="#contato"><span data-lang="pt">Contato</span><span data-lang="en">Contact</span></a></li>
+      <li><button class="nav__lang" id="langToggle" aria-label="Toggle language">EN</button></li>
+    </ul>
+
+    <div class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <div class="hero__text">
+        <p class="hero__eyebrow">
+          <span data-lang="pt">Assessoria Estratégica em Real Estate</span>
+          <span data-lang="en">Strategic Real Estate Advisory</span>
+        </p>
+        <h1 class="hero__title">
+          <span data-lang="pt">Visão que transforma <em>terrenos</em> em patrimônio</span>
+          <span data-lang="en">Vision that transforms <em>land</em> into legacy</span>
+        </h1>
+        <p class="hero__subtitle">
+          <span data-lang="pt">Assessoria independente para incorporadoras, proprietários de terra, investidores e fundos imobiliários - com mais de três décadas de liderança executiva no mercado imobiliário brasileiro.</span>
+          <span data-lang="en">Independent advisory for developers, landowners, investors and real estate funds - backed by three decades of executive leadership in Brazilian real estate.</span>
+        </p>
+        <a href="#contato" class="hero__cta">
+          <span data-lang="pt">Iniciar uma conversa</span>
+          <span data-lang="en">Start a conversation</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <div class="hero__stat-number">R$7B<span>+</span></div>
+          <div class="hero__stat-label">
+            <span data-lang="pt">em VGV entregues</span>
+            <span data-lang="en">in delivered GDV</span>
+          </div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">30<span>+</span></div>
+          <div class="hero__stat-label">
+            <span data-lang="pt">anos de mercado</span>
+            <span data-lang="en">years in the market</span>
+          </div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">R$5B</div>
+          <div class="hero__stat-label">
+            <span data-lang="pt">pipeline em transição</span>
+            <span data-lang="en">pipeline at transition</span>
+          </div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">3</div>
+          <div class="hero__stat-label">
+            <span data-lang="pt">segmentos: residencial, corporativo, urbanismo</span>
+            <span data-lang="en">segments: residential, corporate, urbanism</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section section--cream" id="sobre">
+    <div class="section__container">
+      <div class="reveal">
+        <p class="section__eyebrow">
+          <span data-lang="pt">Sobre</span>
+          <span data-lang="en">About</span>
+        </p>
+        <h2 class="section__title">
+          <span data-lang="pt">Fernando São João <em>Kenworthy</em></span>
+          <span data-lang="en">Fernando São João <em>Kenworthy</em></span>
+        </h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__portrait reveal reveal-delay-1">
+          <img src="assets/images/profile/fernando-valor-2023.jpg"
+               alt="Fernando São João Kenworthy"
+               class="about__portrait-img">
+        </div>
+
+        <div class="about__body reveal reveal-delay-2">
+          <!-- PT -->
+          <div data-lang-block="pt">
+            <h3>Liderança que entrega resultados</h3>
+            <p>Fernando Kenworthy construiu sua carreira liderando operações de desenvolvimento imobiliário de grande escala no Brasil. Ao longo de mais de três décadas, ocupou posições de CEO e direção executiva em quatro das mais relevantes incorporadoras do país - acumulando experiência em residencial, corporativo e urbanismo.</p>
+
+            <h3>Uma trajetória de CEO a CEO</h3>
+            <p>Iniciou na Rossi Residencial, onde ascendeu a CEO da America Properties, a divisão de alto padrão responsável pelo America Business Park - um complexo de seis torres corporativas em São Paulo que se tornou referência no mercado.</p>
+            <p>Na Tishman Speyer, liderou a divisão residencial brasileira, desenvolvendo empreendimentos de altíssimo padrão em bairros nobres de São Paulo, como Alto de Pinheiros e Jardins.</p>
+            <p>Por 17 anos como CEO da Fibra Experts - braço imobiliário do Grupo Vicunha / família Steinbruch - transformou um land bank de 9 milhões de m² em uma operação que entregou R$7 bilhões em VGV, com lançamentos de aproximadamente R$1 bilhão ao ano. Sob sua liderança, a Fibra conquistou o prêmio GRI Awards 2023 de Melhor Empreendimento Corporativo com o Passeio Paulista.</p>
+
+            <h3>Visão estratégica independente</h3>
+            <p>Hoje, através da St. John, Fernando oferece assessoria estratégica independente - aplicando a experiência acumulada na gestão de portfólios bilionários para orientar decisões de investimento, desenvolvimento e monetização de ativos imobiliários.</p>
+          </div>
+
+          <!-- EN -->
+          <div data-lang-block="en">
+            <h3>Leadership that delivers results</h3>
+            <p>Fernando Kenworthy built his career leading large-scale real estate development operations in Brazil. Over more than three decades, he held CEO and executive director positions at four of the country's most prominent developers - accumulating experience across residential, corporate and urbanism segments.</p>
+
+            <h3>A trajectory from CEO to CEO</h3>
+            <p>He began at Rossi Residencial, rising to CEO of America Properties, the high-end division responsible for America Business Park - a six-tower corporate complex in São Paulo that became a market benchmark.</p>
+            <p>At Tishman Speyer, he led the Brazilian residential division, developing ultra-premium projects in São Paulo's most prestigious neighborhoods, including Alto de Pinheiros and Jardins.</p>
+            <p>For 17 years as CEO of Fibra Experts - the real estate arm of Grupo Vicunha / Steinbruch family - he transformed a 9-million-m² land bank into an operation that delivered R$7 billion in GDV, with launches of approximately R$1 billion per year. Under his leadership, Fibra won the 2023 GRI Award for Best Corporate Development with Passeio Paulista.</p>
+
+            <h3>Independent strategic vision</h3>
+            <p>Today, through St. John, Fernando provides independent strategic advisory - applying the experience accumulated managing multi-billion-dollar portfolios to guide investment, development and asset monetization decisions.</p>
+          </div>
+
+          <div class="about__credentials">
+            <div class="about__credential">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span>Eng. Civil - Mackenzie</span>
+            </div>
+            <div class="about__credential">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span>MBA - FGV</span>
+            </div>
+            <div class="about__credential">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>GRI Club</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section section--navy" id="servicos">
+    <div class="section__container">
+      <div class="reveal">
+        <p class="section__eyebrow">
+          <span data-lang="pt">Serviços</span>
+          <span data-lang="en">Services</span>
+        </p>
+        <h2 class="section__title">
+          <span data-lang="pt">Assessoria <em>estratégica</em> de ponta a ponta</span>
+          <span data-lang="en">End-to-end <em>strategic</em> advisory</span>
+        </h2>
+        <p class="section__intro">
+          <span data-lang="pt">Quatro pilares de assessoria integrada que cobrem toda a cadeia de valor do desenvolvimento imobiliário - da originação do terreno à estruturação de fundos.</span>
+          <span data-lang="en">Four integrated advisory pillars covering the entire real estate development value chain - from land origination to fund structuring.</span>
+        </p>
+      </div>
+
+      <!-- PT Services Grid -->
+      <div class="services__grid reveal reveal-delay-1" data-lang-grid="pt">
+        <div class="service-card">
+          <div class="service-card__number">01</div>
+          <h3 class="service-card__title">Prospecção e Negociação de Terrenos</h3>
+          <p class="service-card__title-en">Land Origination & Negotiation</p>
+          <p class="service-card__text">Identificação, avaliação e negociação de terrenos estratégicos para desenvolvimento. Da seleção do ativo ao fechamento do negócio, com visão de quem já originou milhões de metros quadrados.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Incorporadoras</span>
+            <span class="service-card__tag">Site Selection</span>
+            <span class="service-card__tag">Due Diligence</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__number">02</div>
+          <h3 class="service-card__title">Assessoria ao Proprietário de Terra</h3>
+          <p class="service-card__title-en">Landowner Advisory</p>
+          <p class="service-card__text">Orientação estratégica para proprietários sobre o melhor uso do ativo - potencial construtivo, estruturação de parcerias, estratégias de monetização. Transformar terra em valor.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Proprietários</span>
+            <span class="service-card__tag">Highest & Best Use</span>
+            <span class="service-card__tag">Parcerias</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__number">03</div>
+          <h3 class="service-card__title">Gestão de Desenvolvimento</h3>
+          <p class="service-card__title-en">Development Management</p>
+          <p class="service-card__text">Execução completa do ciclo de desenvolvimento: viabilidade, gestão de projeto, acompanhamento de obra e estratégia de comercialização. A visão de quem entregou R$7B em VGV.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Incorporadoras</span>
+            <span class="service-card__tag">Investidores</span>
+            <span class="service-card__tag">End-to-End</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__number">04</div>
+          <h3 class="service-card__title">Assessoria para Fundos Imobiliários</h3>
+          <p class="service-card__title-en">Real Estate Fund Advisory</p>
+          <p class="service-card__text">Assessoria estratégica para composição de portfólio, aquisição de ativos e estruturação de parcerias de desenvolvimento. A ponte entre o mercado imobiliário e o mercado de capitais.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">FIIs</span>
+            <span class="service-card__tag">Fundos de Pensão</span>
+            <span class="service-card__tag">Family Offices</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EN Services Grid -->
+      <div class="services__grid reveal reveal-delay-1" data-lang-grid="en">
+        <div class="service-card">
+          <div class="service-card__number">01</div>
+          <h3 class="service-card__title">Land Origination & Negotiation</h3>
+          <p class="service-card__title-en">Prospecção e Negociação de Terrenos</p>
+          <p class="service-card__text">Identifying, evaluating, and negotiating strategic land for development. From site selection to deal closure, with the perspective of someone who has originated millions of square meters.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Developers</span>
+            <span class="service-card__tag">Site Selection</span>
+            <span class="service-card__tag">Due Diligence</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__number">02</div>
+          <h3 class="service-card__title">Landowner Advisory</h3>
+          <p class="service-card__title-en">Assessoria ao Proprietário de Terra</p>
+          <p class="service-card__text">Strategic guidance for landowners on highest-and-best-use - development potential, partnership structuring, monetization strategies. Turning land into value.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Landowners</span>
+            <span class="service-card__tag">Highest & Best Use</span>
+            <span class="service-card__tag">Partnerships</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__number">03</div>
+          <h3 class="service-card__title">Development Management</h3>
+          <p class="service-card__title-en">Gestão de Desenvolvimento</p>
+          <p class="service-card__text">End-to-end project execution: feasibility, design management, construction oversight and commercialization strategy. The perspective of someone who delivered R$7B in GDV.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">Developers</span>
+            <span class="service-card__tag">Investors</span>
+            <span class="service-card__tag">End-to-End</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__number">04</div>
+          <h3 class="service-card__title">Real Estate Fund Advisory</h3>
+          <p class="service-card__title-en">Assessoria para Fundos Imobiliários</p>
+          <p class="service-card__text">Strategic advice on portfolio composition, asset acquisition and development partnerships. Bridging real estate markets and capital markets.</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">REITs</span>
+            <span class="service-card__tag">Pension Funds</span>
+            <span class="service-card__tag">Family Offices</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASE STUDIES ============ -->
+  <section class="section" id="projetos">
+    <div class="section__container">
+      <div class="reveal">
+        <p class="section__eyebrow">
+          <span data-lang="pt">Projetos Selecionados</span>
+          <span data-lang="en">Selected Projects</span>
+        </p>
+        <h2 class="section__title">
+          <span data-lang="pt">Referências de <em>excelência</em></span>
+          <span data-lang="en">References of <em>excellence</em></span>
+        </h2>
+        <p class="section__intro">
+          <span data-lang="pt">Empreendimentos liderados ao longo de três décadas - cada um representando uma visão estratégica distinta e um resultado mensurável.</span>
+          <span data-lang="en">Developments led over three decades - each representing a distinct strategic vision and a measurable outcome.</span>
+        </p>
+      </div>
+
+      <div class="cases__list">
+
+        <!-- Case 1: Passeio Paulista -->
+        <div class="case reveal">
+          <div class="case__images">
+            <img src="assets/images/projects/passeio-paulista/fachada-wide.jpg"
+                 alt="Passeio Paulista - Fachada"
+                 class="case__img-main">
+            <img src="assets/images/projects/passeio-paulista/mall.jpg"
+                 alt="Passeio Paulista - Open Mall"
+                 class="case__img-secondary">
+          </div>
+          <div class="case__body">
+            <p class="case__eyebrow">Fibra Experts / Brookfield</p>
+            <h3 class="case__title">Passeio Paulista</h3>
+            <p class="case__location">Rua da Consolação, São Paulo</p>
+            <!-- PT -->
+            <p class="case__text" data-lang-block="pt">Empreendimento corporativo AAA de 21 andares com certificações LEED Gold e Fitwel, combinando torre de escritórios com open mall e lofts. Desenvolvido em parceria com a Brookfield Properties e com arquitetura de Aflalo/Gasperini. Vencedor do GRI Awards 2023 como Melhor Empreendimento Corporativo do Brasil.</p>
+            <!-- EN -->
+            <p class="case__text" data-lang-block="en">21-floor AAA corporate development with LEED Gold and Fitwel certifications, combining office tower with open mall and lofts. Developed in partnership with Brookfield Properties with architecture by Aflalo/Gasperini. Winner of the 2023 GRI Award for Best Corporate Development in Brazil.</p>
+            <div class="case__metrics">
+              <div>
+                <div class="case__metric-value">46.491 m²</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Área locável</span>
+                  <span data-lang="en">Leasable area</span>
+                </div>
+              </div>
+              <div>
+                <div class="case__metric-value">LEED Gold</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Certificação</span>
+                  <span data-lang="en">Certification</span>
+                </div>
+              </div>
+              <div>
+                <div class="case__metric-value">GRI 2023</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Melhor Corporativo</span>
+                  <span data-lang="en">Best Corporate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 2: America Business Park -->
+        <div class="case reveal">
+          <div class="case__images">
+            <img src="assets/images/projects/america-business-park/aerial-1.jpg"
+                 alt="America Business Park - Vista Aérea"
+                 class="case__img-main">
+            <img src="assets/images/projects/america-business-park/exterior-1.jpg"
+                 alt="America Business Park - Exterior"
+                 class="case__img-secondary">
+          </div>
+          <div class="case__body">
+            <p class="case__eyebrow">America Properties / Rossi</p>
+            <h3 class="case__title">America Business Park</h3>
+            <p class="case__location">Av. Major Sylvio de Magalhães Padilha, Morumbi, São Paulo</p>
+            <!-- PT -->
+            <p class="case__text" data-lang-block="pt">Complexo corporativo classe A composto por seis torres independentes em condomínio fechado, com fachadas em granito e vidro laminado reflexivo. Infraestrutura de primeiro nível com piso elevado, ar-condicionado central e fibra óptica. Investimento do fundo PREVI (Banco do Brasil), com comercialização pelas maiores consultorias globais.</p>
+            <!-- EN -->
+            <p class="case__text" data-lang-block="en">Class A corporate complex comprising six independent towers in a gated condominium, with granite facades and reflective laminated glass curtain walls. First-tier infrastructure with raised floors, central AC and fiber optics. Investment by PREVI fund (Banco do Brasil), marketed by the largest global consultancies.</p>
+            <div class="case__metrics">
+              <div>
+                <div class="case__metric-value">6</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Torres</span>
+                  <span data-lang="en">Towers</span>
+                </div>
+              </div>
+              <div>
+                <div class="case__metric-value">~27.000 m²</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Área privativa</span>
+                  <span data-lang="en">Private area</span>
+                </div>
+              </div>
+              <div>
+                <div class="case__metric-value">PREVI</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Investidor institucional</span>
+                  <span data-lang="en">Institutional investor</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 3: Duo Alto de Pinheiros -->
+        <div class="case reveal">
+          <div class="case__images">
+            <img src="assets/images/projects/duo-alto-de-pinheiros/hero.jpg"
+                 alt="Duo Alto de Pinheiros"
+                 class="case__img-main">
+            <img src="assets/images/projects/duo-alto-de-pinheiros/exterior-1.jpg"
+                 alt="Duo Alto de Pinheiros - Detalhe"
+                 class="case__img-secondary">
+          </div>
+          <div class="case__body">
+            <p class="case__eyebrow">Tishman Speyer</p>
+            <h3 class="case__title">Duo Alto de Pinheiros</h3>
+            <p class="case__location">Alto de Pinheiros, São Paulo</p>
+            <!-- PT -->
+            <p class="case__text" data-lang-block="pt">Empreendimento residencial de altíssimo padrão em um dos bairros mais exclusivos de São Paulo. Unidades de 319 a 325 m², desenvolvidas com o rigor e os padrões internacionais da Tishman Speyer - referência global em real estate de luxo.</p>
+            <!-- EN -->
+            <p class="case__text" data-lang-block="en">Ultra-premium residential development in one of São Paulo's most exclusive neighborhoods. Units from 319 to 325 m², developed with the rigor and international standards of Tishman Speyer - a global reference in luxury real estate.</p>
+            <div class="case__metrics">
+              <div>
+                <div class="case__metric-value">319-325 m²</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Unidades</span>
+                  <span data-lang="en">Units</span>
+                </div>
+              </div>
+              <div>
+                <div class="case__metric-value">AAA</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Padrão</span>
+                  <span data-lang="en">Standard</span>
+                </div>
+              </div>
+              <div>
+                <div class="case__metric-value">Tishman</div>
+                <div class="case__metric-label">
+                  <span data-lang="pt">Padrão global</span>
+                  <span data-lang="en">Global standard</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section section--navy" id="contato">
+    <div class="section__container">
+      <div class="reveal">
+        <p class="section__eyebrow">
+          <span data-lang="pt">Contato</span>
+          <span data-lang="en">Contact</span>
+        </p>
+        <h2 class="section__title">
+          <span data-lang="pt">Vamos <em>conversar</em></span>
+          <span data-lang="en">Let's <em>talk</em></span>
+        </h2>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__info reveal reveal-delay-1">
+          <!-- PT -->
+          <p data-lang-block="pt">Cada projeto começa com uma conversa. Se você busca assessoria estratégica para seu próximo empreendimento, terreno ou fundo imobiliário, entre em contato.</p>
+          <!-- EN -->
+          <p data-lang-block="en">Every project begins with a conversation. If you're seeking strategic advisory for your next development, land asset, or real estate fund, get in touch.</p>
+
+          <div class="contact__detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@stjohn-br.com">contato@stjohn-br.com</a>
+          </div>
+
+          <div class="contact__detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>São Paulo, SP - Brasil</span>
+          </div>
+        </div>
+
+        <form class="contact__form reveal reveal-delay-2" onsubmit="return handleSubmit(event)">
+          <div class="form__group">
+            <input type="text" class="form__input" required
+                   data-placeholder-pt="Nome" data-placeholder-en="Name">
+          </div>
+          <div class="form__group">
+            <input type="email" class="form__input" required
+                   data-placeholder-pt="E-mail" data-placeholder-en="Email">
+          </div>
+          <div class="form__group">
+            <input type="text" class="form__input"
+                   data-placeholder-pt="Empresa" data-placeholder-en="Company">
+          </div>
+          <div class="form__group">
+            <textarea class="form__textarea" rows="4"
+                      data-placeholder-pt="Mensagem" data-placeholder-en="Message"></textarea>
+          </div>
+          <button type="submit" class="form__submit">
+            <span data-lang="pt">Enviar mensagem</span>
+            <span data-lang="en">Send message</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">© 2025 St. John Assessoria Estratégica. <span data-lang="pt">Todos os direitos reservados.</span><span data-lang="en">All rights reserved.</span></p>
+      <a href="#home" class="footer__back-top">↑ Top</a>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ---- Language Toggle ----
+    let currentLang = 'pt';
+
+    const langToggle = document.getElementById('langToggle');
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'pt' ? 'en' : 'pt';
+      document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+      langToggle.textContent = currentLang === 'pt' ? 'EN' : 'PT';
+      updatePlaceholders();
+    });
+
+    function updatePlaceholders() {
+      document.querySelectorAll('[data-placeholder-pt]').forEach(el => {
+        el.placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
+      });
+    }
+    updatePlaceholders();
+
+    // ---- Nav scroll ----
+    const nav = document.querySelector('.nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      nav.classList.toggle('scrolled', scrollY > 60);
+      lastScroll = scrollY;
+    }, { passive: true });
+
+    // ---- Mobile menu ----
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Scroll reveal ----
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ---- Form handler (placeholder - no backend) ----
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form__submit');
+      const original = btn.innerHTML;
+      btn.innerHTML = currentLang === 'pt'
+        ? '✓ Mensagem enviada'
+        : '✓ Message sent';
+      btn.style.background = '#2A5494';
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        e.target.reset();
+        updatePlaceholders();
+      }, 3000);
+      return false;
+    }
+  </script>
+</body>
+</html>
